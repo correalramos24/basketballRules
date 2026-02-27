@@ -1,0 +1,24 @@
+body {
+  counter-reset: article;
+}
+
+#article{
+    counter-increment: article;
+    counter-reset: epigraf;
+    margin-bottom: 2rem;
+}
+
+.epigraf {
+  counter-increment: epigraf;
+}
+
+.epigraf > h3::before {
+  content: counter(article) "." counter(epigraf) " ";
+  font-weight: bold;
+}
+
+.article h2::before {
+  counter-increment: article;
+  content: "Art." counter(article) ;
+  font-weight: bold;
+}
