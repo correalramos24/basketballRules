@@ -1,15 +1,35 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   counter-reset: article;
 }
 
-#article{
-    counter-increment: article;
-    counter-reset: epigraf;
-    margin-bottom: 2rem;
+.rule {
+  display: block;
+  text-align: center;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 0.25rem;
+  width: max-content;
+  margin: 0 auto 0.75rem;
+}
+
+
+.article {
+  counter-increment: article;
+  counter-reset: epigraf;
+  margin-bottom: 2rem;
+}
+
+.article > h2::before {
+  content: "Art. " counter(article) " ";
+  font-weight: bold;
 }
 
 .epigraf {
   counter-increment: epigraf;
+  counter-reset: subepigraf;
 }
 
 .epigraf > h3::before {
@@ -17,8 +37,19 @@ body {
   font-weight: bold;
 }
 
-.article h2::before {
-  counter-increment: article;
-  content: "Art." counter(article) ;
+.epigraf > h4 {
+  counter-increment: subepigraf;
+}
+
+.epigraf > h4::before {
+  content: counter(article) "." counter(epigraf) "." counter(subepigraf) " ";
   font-weight: bold;
+}
+
+.annex {
+  border-left: 3px solid rgba(0, 0, 0, 0.25);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  background: orange;
 }
