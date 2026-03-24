@@ -34,10 +34,10 @@ obstacle; les dimensions han de ser de 28 m de llargada per 15 m d'amplada.
 Aquestes mides s'han de prendre des de la vora interior de les línies que delimiten
 la pista (Figura 1).
 
-::: annex
+<div class=annex>
 Annex a l’article 2.1. Per les competicions de l’FCBQ
 Les mides de les pistes de joc per les diferents competicions venen determinades per l’apartat L.2. del punt 4.1. DISPOSICIONS GENERALS PER ALS CAMPIONATS ORGANITZATS PER L’FCBQ del llibre de l’Assemblea General.
-:::
+</div>
 
 ### Superfície de joc
 La superfície de joc inclourà un àrea d’un mínim de 2 metres d’amplada lliures
@@ -55,6 +55,12 @@ La pista davantera d’un equip es compon de la cistella dels oponents, la part 
 tauler que dona al terreny de joc i la part del terreny de joc delimitada per la línia de
 fons darrere la cistella dels oponents, les línies laterals i la vora interior de la línia
 central més propera a la cistella de l’oponent.
+
+<div class=annex>
+Annex a l’article 2.4. Per les competicions de l’FCBQ.
+L’FCBQ recomana, que en el cas que les pistes tinguin doble marcatge de la línia de
+3 punts, les dues línies siguin de dos colors diferents.
+</div>
 
 ### Línies
 Totes les línies han de ser del mateix color, marcades en blanc o un altre color que
@@ -79,13 +85,25 @@ Les àrees restringides són les àrees rectangulars marcades en el terreny de j
 
 Les posicions de rebot per a tirs lliures, reservats per als jugadors durant els tirs lliures, es traçaran tal com es mostra la Figura 2.
 
-::: annex
+<div class=annex>
 Annex a l’article 2.5.3 Per les competicions de l’FCBQ
 Article 4.1.2 de les Disposicions Generals per als Campionats organitzats per l’FCBQ.-La zona restringida rectangular és l’oficial per a tots els Campionats, si bé s’homologarà l’antiga zona trapezoïdal, excepte en les Competicions definides com Nivell 1 i 2 segons el punt 4.1. de les Disposicions Generals per als Campionats organitzats per l’FCBQ.
-:::
+</div>
+
+#### Àrea de cistella de 3 punts
+L’àrea de cistella de 3 punts d’un equip (Figures 1 i 3), serà tota la pista de joc, excepte l’àrea més propera a la cistella de l’equip adversari, que inclou i està limitada per:
+* Les 2 línies paral·leles que surten perpendicularment a la línia de fons, amb la vora exterior a 0.90 m de la vora interior de les línies laterals.
+* Un arc de 6.75 m de radi mesurat des del punt en el terra sota del centre exacte de la cistella de l’adversari fins a la vora exterior de l’arc. La distància des del punt a terra a la vora interior del punt mitjà de la línia de fons serà de 1.575 m. L’arc s’uneix a les línies paral·leles. La línia de 3 punts no és part de l’àrea de cistella de 3 punts.
+
+#### Àrea de banqueta d’equip
+
+#### Línies de servei
+
+#### Àrees de semicercle de no càrrega
 
 ### Posició de la taula d’auxiliars i de les cadires de substituts
 
+La taula de l’anotador i les seves cadires han de col·locar-se sobre una plataforma. El comentarista o els encarregats de les estadístiques (si hi fossin) poden asseure’s al costat o darrera de la taula dels anotadors.
 
 ## Equipament
 Serà obligatori el següent equipament:
@@ -110,6 +128,12 @@ el rellotge de joc.
 * Terreny de joc.
 * Enllumenat adequat.
 Per a una descripció més detallada de l’equipament de basquetbol, vegeu l’apèndix d’equipament de Basquetbol.
+
+<div class=annex>
+Annex Art. 3. Per les competicions de l’FCBQ
+
+Article 4.1. Disposicions Generals per als Campionats organitzats per l’FCBQ.- L’acta oficial del partit per les competicions d’àmbit català serà l’aprovada per l’Assemblea General de l’FCBQ.
+</div>
 
 ## Els equips
 
@@ -137,9 +161,63 @@ jugar.
 
 # REGLAMENTACIO DEL JOC
 
+## Temps de joc, tempteig empatat i pròrrogues
 
+## Començament i final d’un quart o del partit.
+
+## Condició de la pilota
+
+## Posició del jugador i de l’àrbitre
+
+## Salt entre dos i alternança de possessió
+
+## Com es juga la pilota
+
+## Control de la pilota
+
+## Jugador en acció de tir
+
+## Encistellada: quan es marca i el seu valor
+
+## Servei
+
+## Temps mort 
+
+## Substitució
+
+## Partit perdut per incompareixença 
+
+## Partit perdut per inferioritat
 # VIOLACIONS
 
+## Violacions
+### Definicio 
+Una **violació** és una infracció de les regles.
+
+<div class = sancio>
+<h3> Sanció </h3>
+La pilota s’adjudica als adversaris per realitzar un servei des del punt més proper d’on
+s’ha comès la infracció, excepte directament des de darrere del tauler, a no ser que
+s’especifiqui el contrari en aquestes regles.
+</div>
+
+## Jugador fora del terreny de joc i pilota fora del terreny de joc
+
+## Driblatge
+
+## Avançament il·legal
+
+## 3 segons
+
+## Jugador estretament marcat
+
+## 8 segons
+
+## 24 segons
+
+## Retorn de la pilota a la pista de darrere
+
+## Interposició i interferència
 
 # FALTES
 
