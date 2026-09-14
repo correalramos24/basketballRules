@@ -16,9 +16,11 @@ També funciona amb qualsevol altre servidor estàtic (`npx serve`, l'extensió 
 
 ## Funcionalitats
 
-- **Dos documents** amb pestanyes a la capçalera: **Regles** i **Interpretacions**.
+- **Selector de mode de vista** a la capçalera: **Normal** o **Side by side**.
+- **Mode Normal**: un sol document amb pestanyes a la capçalera (**Regles** / **Interpretacions**).
+- **Mode Side by side**: els dos documents en files alineades per número d'article (Art. N ↔ Article N). Cada parella d'articles va en una mateixa fila; els blocs sense equivalent mostren un avís. Inclou bandes de separació per a cada Regla i els annexos. En pantalles estretes les parelles s'apilen en vertical.
 - **Índex lateral** amb l'estructura del document, que marca automàticament la secció que es llegeix (scroll-spy).
-- **Cerca dins del reglament**: el quadre de la barra lateral cerca a tot el contingut del document actiu. Mostra una llista de resultats amb el context de cada coincidència; fent clic (o amb `Enter`) saltes a la secció i es ressalten les coincidències al text. La cerca no distingeix majúscules ni accents.
+- **Cerca dins del reglament**: el quadre de la barra lateral cerca a tot el contingut del document actiu. Mostra una llista de resultats amb el context de cada coincidència; fent clic (o amb `Enter`) saltes a la secció, es ressalten les coincidències al text (color fort) i els epígrafs on apareixen (tint suau). La cerca no distingeix majúscules ni accents.
 - **Annexos FCBQ** destacats en taronja i **sancions** en vermell.
 - **Versió d'impressió** maquetada (els annexos i blocs queden ben separats).
 
@@ -27,8 +29,23 @@ També funciona amb qualsevol altre servidor estàtic (`npx serve`, l'extensió 
 - `index.html` — Pàgina principal (tabs, sidebar i cerca)
 - `styles.css` — Estils del lloc (tema FCBQ)
 - `script.js` — Lògica de càrrega, renderització, cerca i navegació
+- `vendor/marked.min.js` — Llibreria `marked` (local, sense CDN)
 - `reglesFCBQ.md` — Regles FIBA 2024 adaptades per l'FCBQ
 - `interpretacionsFCBQ.md` — Interpretacions oficials de les Regles de Joc
+
+## Desplegament amb Docker
+
+El `Dockerfile` de l'arrel construeix una imatge amb `nginx:alpine` que serveix el lloc directament (HTML, estils, markdown i imatges inclosos). No requereix cap servidor d'aplicacions.
+
+```bash
+# Construir imatge
+docker build -t basketballrules .
+
+# Executar
+docker run -d --name basketballrules -p 8080:80 basketballrules
+```
+
+Després obre **http://localhost:8080** (o el port que prefereixis).
 
 ## Convertidors
 

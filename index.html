@@ -14,6 +14,19 @@
           <span class="brand-title">Reglament Oficial de Basquetbol</span>
           <span class="brand-sub" id="doc-subtitle">Regles FIBA 2024 adaptades per l'FCBQ</span>
         </div>
+        <div class="view-mode-wrap">
+          <div class="view-mode-select" id="view-mode-select">
+            <button class="view-mode-btn" id="view-mode-btn" aria-haspopup="listbox" aria-expanded="false">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg>
+              <span id="view-mode-label">Normal</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="view-mode-options" id="view-mode-options" role="listbox" aria-label="Mode de vista">
+              <li class="view-mode-option active" role="option" data-mode="normal">Normal</li>
+              <li class="view-mode-option" role="option" data-mode="side-by-side">Side by side</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <nav class="doc-tabs" role="tablist" aria-label="Documents">
         <button class="doc-tab active" role="tab" aria-selected="true" data-doc="regles">Regles</button>
@@ -35,8 +48,21 @@
         </div>
       </aside>
 
-      <main class="content" id="content-scroll">
-        <div id="reglament" class="markdown-body" tabindex="-1"></div>
+      <main>
+        <div class="view-normal" id="view-normal">
+          <div class="content" id="content-scroll">
+            <div id="reglament" class="markdown-body" tabindex="-1"></div>
+          </div>
+        </div>
+        <div class="view-side" id="view-side" hidden>
+          <div class="side-top">
+            <span class="side-top-label">Regles FCBQ</span>
+            <span class="side-top-label">Interpretacions</span>
+          </div>
+          <div class="side-scroll" id="side-scroll">
+            <div id="side-pairs" class="side-pairs"></div>
+          </div>
+        </div>
       </main>
     </div>
 
@@ -45,7 +71,7 @@
       <p>Projecte original de Victor Correal Ramos © 2026</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="vendor/marked.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
