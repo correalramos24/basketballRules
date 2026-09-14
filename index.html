@@ -1,48 +1,51 @@
 <!doctype html>
-<html lang="en">
+<html lang="ca">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reglament de Basquetbol</title>
+    <title>Reglament de Basquetbol FCBQ 2024</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   </head>
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-badge">FCBQ</span>
+        <div class="brand-text">
+          <span class="brand-title">Reglament Oficial de Basquetbol</span>
+          <span class="brand-sub" id="doc-subtitle">Regles FIBA 2024 adaptades per l'FCBQ</span>
+        </div>
+      </div>
+      <nav class="doc-tabs" role="tablist" aria-label="Documents">
+        <button class="doc-tab active" role="tab" aria-selected="true" data-doc="regles">Regles</button>
+        <button class="doc-tab" role="tab" aria-selected="false" data-doc="interps">Interpretacions</button>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar" aria-label="Índex">
+        <div class="sidebar-toggle-wrap">
+          <button class="sidebar-toggle" id="sidebar-toggle" aria-controls="sidebar-nav">Índex</button>
+        </div>
+        <div class="sidebar-inner">
+          <div class="sidebar-search">
+            <input type="search" id="search" placeholder="Cercar al document…" autocomplete="off">
+            <div id="search-results" class="search-results" hidden></div>
+          </div>
+          <nav id="sidebar-nav" class="sidebar-nav" aria-label="Navegació"></nav>
+        </div>
+      </aside>
+
+      <main class="content" id="content-scroll">
+        <div id="reglament" class="markdown-body" tabindex="-1"></div>
+      </main>
+    </div>
+
+    <footer class="foot">
+      <p>Contingut dels documents oficials de les Regles de Joc i de les Interpretacions, adaptats i distribuïts per la Federació Catalana de Basquetbol (FCBQ).</p>
+      <p>Projecte original de Victor Correal Ramos © 2026</p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
-
-    <div class="container-fluid">
-    <header class="center-text pt-4">
-        <h1 class="text-center">Reglament FIBA</h1>
-    </header>
-    <!-- toggle navbar -->
-    <button class="btn btn-outline-secondary mb-2" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-expanded="true">
-        ☰
-    </button>
-
-    <div class="d-flex" style="height: calc(100vh - 50px);">
-        <!-- SIDEBAR -->
-        <div class="collapse collapse-horizontal show" id="sidebar">
-            <div class="border-end h-100" style="width: 240px;">
-                <nav class="nav flex-column p-3">
-					<h1> Navegació </h1>
-                </nav>
-            </div>
-        </div>
-
-        <!-- MAIN CONTENT -->
-        <div class="flex-fill overflow-auto">
-            <div id="reglament"></div>
-        </div>
-
-    </div>
-    <footer>
-  		<div class="text-center p-3">
-			<p>Pàgina web amb el contingut dels documents ... i ... editats i distribuits per la Federació Catalana de Basquetbol</p>
-			<p>Projecte original de Victor Correal Ramos © 2026 Copyright</p>
-  		</div>
-	</footer>
-
   </body>
 </html>

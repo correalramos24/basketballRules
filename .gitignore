@@ -1,0 +1,17 @@
+# PDF font actualitzat (no utilitzat pels convertidors)
+regles_fcbq_2026.pdf
+
+# Entorns Python
+.venv/
+venv/
+
+# Codi Python compilat
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Sistema
+.DS_Store
+Thumbs.db
