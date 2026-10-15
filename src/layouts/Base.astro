@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Reglament de Bàsquetbol', description = 'Consulta ràpida del reglament FIBA/FCBQ' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          const dark = stored
+            ? stored === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.classList.toggle('dark', dark);
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen">
+    <SiteHeader />
+
+    <main class="mx-auto max-w-6xl px-4 py-8">
+      <slot />
+    </main>
+
+    <footer class="mx-auto max-w-6xl px-4 py-8 text-xs text-court-500">
+      <p>Regles FIBA 2026 v1.1 adaptades a l’FCBQ · Projecte de Victor Correal Ramos © 2026</p>
+    </footer>
+  </body>
+</html>

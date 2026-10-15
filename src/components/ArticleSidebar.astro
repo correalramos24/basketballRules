@@ -1,0 +1,110 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  current?: string;
+}
+
+const { current } = Astro.props;
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.numero - b.data.numero,
+);
+
+const rules = new Map();
+for (const article of articles) {
+  if (!rules.has(article.data.regla)) {
+    rules.set(article.data.regla, {
+      numero: article.data.regla,
+      titol: article.data.reglaTitol,
+      items: [],
+    });
+  }
+  rules.get(article.data.regla).items.push(article);
+}
+const ruleList = [...rules.values()].sort((a, b) => a.numero - b.numero);
+---
+
+<aside class="mb-6 lg:mb-0">
+  <details
+    class="article-nav group rounded-xl border border-court-200 bg-white lg:border-0 lg:bg-transparent dark:border-court-700 dark:bg-court-800 dark:lg:bg-transparent"
+  >
+    <summary
+      class="flex cursor-pointer list-none items-center justify-between px-4 py-3 font-medium lg:hidden"
+    >
+      <span>Canviar d'article</span>
+      <span class="transition group-open:rotate-180" aria-hidden="true">⌄</span>
+    </summary>
+
+    <div class="px-4 pb-4 lg:sticky lg:top-20 lg:px-0 lg:pb-0">
+      <label class="relative mb-3 block">
+        <span class="sr-only">Cercar article</span>
+        <input
+          id="article-filter"
+          type="search"
+          placeholder="Cercar article…"
+          class="w-full rounded-lg border border-court-200 bg-white px-3 py-2 text-sm outline-none placeholder:text-court-400 focus:border-accent dark:border-court-700 dark:bg-court-900"
+        />
+      </label>
+
+      <nav
+        id="article-nav"
+        aria-label="Articles"
+        class="max-h-[60vh] space-y-4 overflow-y-auto pr-1"
+      >
+        {ruleList.map((rule) => (
+          <div data-rule>
+            <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-court-400">
+              <span class="text-accent">Regla {rule.numero}</span> · {rule.titol}
+            </p>
+            <ul class="space-y-0.5">
+              {rule.items.map((article) => (
+                <li data-item>
+                  <a
+                    href={`/articles/${article.id}`}
+                    aria-current={article.id === current ? 'page' : undefined}
+                    class:list={[
+                      'flex items-baseline gap-2 rounded-md px-2 py-1 text-sm transition',
+                      article.id === current
+                        ? 'bg-accent/10 font-medium text-accent'
+                        : 'text-court-700 hover:bg-court-100 dark:text-court-200 dark:hover:bg-court-700',
+                    ]}
+                  >
+                    <span class="w-6 shrink-0 text-right font-mono text-xs text-court-400">
+                      {article.data.numero}
+                    </span>
+                    <span>{article.data.titulo}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+    </div>
+  </details>
+</aside>
+
+<script>
+  const nav = document.getElementById('article-nav');
+  const active = nav?.querySelector('[aria-current="page"]');
+  if (nav && active) {
+    nav.scrollTop = active.offsetTop - nav.clientHeight / 2 + active.clientHeight / 2;
+  }
+
+  const input = document.getElementById('article-filter');
+  if (input && nav) {
+    input.addEventListener('input', () => {
+      const query = input.value.trim().toLowerCase();
+      nav.querySelectorAll('[data-rule]').forEach((group) => {
+        let visible = 0;
+        group.querySelectorAll('[data-item]').forEach((item) => {
+          const match = item.textContent.toLowerCase().includes(query);
+          item.hidden = !match;
+          if (match) visible++;
+        });
+        group.hidden = visible === 0;
+      });
+    });
+  }
+</script>

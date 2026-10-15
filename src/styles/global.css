@@ -1,0 +1,176 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Class-based dark mode toggled by adding/removing `.dark` on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-court-50: #f5f7fa;
+  --color-court-100: #e8edf4;
+  --color-court-200: #cdd8e6;
+  --color-court-300: #a3b6cf;
+  --color-court-400: #728fb2;
+  --color-court-500: #517098;
+  --color-court-600: #3e587c;
+  --color-court-700: #334765;
+  --color-court-800: #2d3d55;
+  --color-court-900: #293549;
+  --color-accent: #e8590c;
+}
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-court-50 text-court-900 antialiased;
+}
+
+.dark body {
+  @apply bg-court-900 text-court-100;
+}
+
+/* Sub-article ids in their own column, title/text next to them (like the PDF). */
+.prose {
+  --sub-id-col: 4.25rem;
+  --sub-id-gap: 0.75rem;
+}
+
+.prose .sub-id {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.prose h2 {
+  display: grid;
+  grid-template-columns: var(--sub-id-col) minmax(0, 1fr);
+  gap: var(--sub-id-gap);
+  align-items: baseline;
+}
+
+.prose h2 .sub-title {
+  min-width: 0;
+}
+
+/* Sub-items (4.1.1, 4.4.4.1, …): id hangs in the same column as the article id. */
+.prose .sub-item {
+  display: grid;
+  grid-template-columns: var(--sub-id-col) minmax(0, 1fr);
+  gap: var(--sub-id-gap);
+  align-items: baseline;
+  padding-inline-start: 0;
+}
+
+.prose .sub-item .sub-id {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.prose .sub-item .sub-body {
+  min-width: 0;
+}
+
+/* Body text sits below the title, not below the id. */
+.prose > :not(h2) {
+  padding-inline-start: calc(var(--sub-id-col) + var(--sub-id-gap));
+}
+
+/* Sub-item paragraphs manage their own columns. */
+.prose > .sub-item {
+  padding-inline-start: 0;
+}
+
+@media (max-width: 40rem) {
+  .prose {
+    --sub-id-col: 3.25rem;
+    --sub-id-gap: 0.5rem;
+  }
+
+  .prose .sub-item .sub-id {
+    font-size: 0.8rem;
+  }
+}
+
+/* FCBQ annex callout — orange background, collapsible. Only the title is bold. */
+.annex {
+  background-color: #e8590c;
+  color: #000;
+  font-weight: 400;
+  border-radius: 0.5rem;
+  border-left: 4px solid #000;
+  padding: 0.85rem 1rem;
+  margin-block: 1.25rem;
+}
+
+.annex,
+.annex p,
+.annex em,
+.annex a,
+.annex li,
+.annex span {
+  color: #000;
+  font-weight: 400;
+}
+
+.annex > summary {
+  cursor: pointer;
+  font-weight: 700;
+  list-style-position: inside;
+  user-select: none;
+}
+
+.annex > summary::-webkit-details-marker {
+  color: #000;
+}
+
+.annex > summary:hover {
+  text-decoration: underline;
+}
+
+.annex[open] > summary {
+  margin-bottom: 0.6rem;
+}
+
+.annex > :first-child {
+  margin-top: 0;
+}
+
+.annex > :last-child {
+  margin-bottom: 0;
+}
+
+.annex-body > :first-child {
+  margin-top: 0;
+}
+
+.annex-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* Article sidebar: always expanded on large screens, collapsible (details) on small */
+@media (min-width: 64rem) {
+  .article-nav > summary {
+    display: none;
+  }
+
+  /* Older engines hide non-summary children with display:none when closed */
+  .article-nav:not([open]) > div {
+    display: block;
+  }
+
+  /* Modern engines hide the content via ::details-content (content-visibility) */
+  .article-nav::details-content {
+    content-visibility: visible;
+  }
+}
+
+

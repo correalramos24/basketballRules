@@ -1,0 +1,36 @@
+---
+import Base from './Base.astro';
+import ArticleSidebar from '../components/ArticleSidebar.astro';
+import BackLink from '../components/BackLink.astro';
+
+interface Props {
+  slug: string;
+  numero: number;
+  titulo: string;
+}
+
+const { slug, numero, titulo } = Astro.props;
+const artClass = `art-${String(numero).padStart(2, '0')}`;
+---
+
+<Base title={`Art. ${numero} ${titulo} — Reglament 2026`}>
+  <div class="lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-10">
+    <ArticleSidebar current={slug} />
+
+    <div class="min-w-0">
+      <div class="mb-4">
+        <BackLink />
+      </div>
+
+      <header class="mb-8 border-b border-court-200 pb-4 dark:border-court-700">
+        <h1 class="text-3xl font-bold tracking-tight">
+          <span class="font-mono">Art. {numero}</span> — {titulo}
+        </h1>
+      </header>
+
+      <article class={`${artClass} prose prose-court max-w-none dark:prose-invert`}>
+        <slot />
+      </article>
+    </div>
+  </div>
+</Base>

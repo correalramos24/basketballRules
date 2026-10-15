@@ -1,0 +1,45 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const path = Astro.url.pathname;
+
+const links = [
+  { href: '/', label: 'Inici' },
+  { href: '/regles', label: 'Índex' },
+];
+
+const isActive = (href) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header
+  class="sticky top-0 z-20 border-b border-court-200 bg-white/80 backdrop-blur dark:border-court-700 dark:bg-court-800/80"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <a href="/" class="flex items-center gap-2 font-semibold">
+      <span class="grid h-8 w-8 place-items-center rounded-full bg-accent text-xs font-bold text-white">
+        FIBA
+      </span>
+      <span>Reglament 2026</span>
+    </a>
+
+    <div class="flex items-center gap-2">
+      <nav class="flex items-center gap-1 text-sm">
+        {links.map(({ href, label }) => (
+          <a
+            href={href}
+            aria-current={isActive(href) ? 'page' : undefined}
+            class:list={[
+              'rounded-lg px-3 py-1.5 transition',
+              isActive(href)
+                ? 'bg-accent/10 font-medium text-accent'
+                : 'hover:bg-court-100 dark:hover:bg-court-700',
+            ]}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+      <ThemeToggle />
+    </div>
+  </div>
+</header>

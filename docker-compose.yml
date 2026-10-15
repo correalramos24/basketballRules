@@ -1,0 +1,10 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: basketballrules:latest
+    container_name: basketballrules
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

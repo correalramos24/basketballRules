@@ -1,0 +1,30 @@
+{
+  "name": "basketball-rules",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "dev:host": "astro dev --host",
+    "dev:stop": "astro dev stop",
+    "dev:status": "astro dev status",
+    "dev:logs": "astro dev logs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "generate:articles": "node scripts/generate_articles.mjs",
+    "parse:rulebook": "python3 scripts/parse_rulebook.py"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.3",
+    "@astrojs/mdx": "^8.1.0",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.0",
+    "flexsearch": "^0.8.212",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

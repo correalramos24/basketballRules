@@ -1,0 +1,1137 @@
+{
+  "rules": [
+    {
+      "numero": 1,
+      "titulo": "EL JOC",
+      "articles": [
+        {
+          "numero": 1,
+          "titulo": "Definicions",
+          "apartats": [
+            {
+              "num": "1.1",
+              "titulo": "El partit de basquetbol"
+            },
+            {
+              "num": "1.2",
+              "titulo": "Responsabilitat dels participants"
+            },
+            {
+              "num": "1.3",
+              "titulo": "Cistella: pròpia/contrària"
+            },
+            {
+              "num": "1.4",
+              "titulo": "Equip guanyador d’un partit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "TERRENY DE JOC I EQUIPAMENT",
+      "articles": [
+        {
+          "numero": 2,
+          "titulo": "Terreny de joc",
+          "apartats": [
+            {
+              "num": "2.1",
+              "titulo": "Pista de joc"
+            },
+            {
+              "num": "2.2",
+              "titulo": "2.3."
+            },
+            {
+              "num": "2.3",
+              "titulo": "2.4."
+            },
+            {
+              "num": "2.4",
+              "titulo": "2.5."
+            },
+            {
+              "num": "2.5",
+              "titulo": "Totes les línies hauran de ser d'un color uniforme, de 5 cm d'amplada, clarament"
+            },
+            {
+              "num": "2.6",
+              "titulo": "Posició de la taula d’auxiliars i de les cadires de substituts"
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "titulo": "Equipament",
+          "apartats": []
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "titulo": "ELS EQUIPS",
+      "articles": [
+        {
+          "numero": 4,
+          "titulo": "Els equips",
+          "apartats": [
+            {
+              "num": "4.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "4.2",
+              "titulo": "Regla"
+            },
+            {
+              "num": "4.3",
+              "titulo": "Uniformes"
+            },
+            {
+              "num": "4.4",
+              "titulo": "Altre equipament"
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "titulo": "Jugadors: lesions i assistència",
+          "apartats": [
+            {
+              "num": "5.1",
+              "titulo": "5.2."
+            },
+            {
+              "num": "5.2",
+              "titulo": "Els àrbitres poden aturar el partit en cas de lesió d’un o més jugadors."
+            },
+            {
+              "num": "5.3",
+              "titulo": "5.4."
+            },
+            {
+              "num": "5.4",
+              "titulo": "5.5."
+            },
+            {
+              "num": "5.5",
+              "titulo": "5.6."
+            },
+            {
+              "num": "5.6",
+              "titulo": "5.7."
+            },
+            {
+              "num": "5.7",
+              "titulo": "5.8."
+            },
+            {
+              "num": "5.8",
+              "titulo": "Art. 6"
+            }
+          ]
+        },
+        {
+          "numero": 6,
+          "titulo": "El capità: drets i obligacions",
+          "apartats": [
+            {
+              "num": "6.1",
+              "titulo": "El capità (CAP) és un jugador designat per l’entrenador per representar l’equip en la"
+            },
+            {
+              "num": "6.2",
+              "titulo": "Art. 7"
+            }
+          ]
+        },
+        {
+          "numero": 7,
+          "titulo": "L’entrenador i primer ajudant d’entrenador: drets i obligacions",
+          "apartats": [
+            {
+              "num": "7.1",
+              "titulo": "Almenys 40 minuts abans de l’hora fixada per a l’inici del partit, l’entrenador o el"
+            },
+            {
+              "num": "7.2",
+              "titulo": "Almenys 10 minuts abans de l’hora fixada per a l'inici del partit, els dos entrenadors"
+            },
+            {
+              "num": "7.3",
+              "titulo": "Els entrenadors, entrenadors ajudants, substituts, jugadors eliminats i"
+            },
+            {
+              "num": "7.4",
+              "titulo": "L’entrenador o el primer ajudant d’entrenador poden apropar-se als auxiliars de taula"
+            },
+            {
+              "num": "7.5",
+              "titulo": "L’entrenador es podrà dirigir als àrbitres durant el partit de manera cortès per obtenir"
+            },
+            {
+              "num": "7.6",
+              "titulo": "L’entrenador o el primer ajudant d’entrenador, però només un d’ells al mateix temps,"
+            },
+            {
+              "num": "7.7",
+              "titulo": "Si hi ha un el primer ajudant d’entrenador, el seu nom serà inscrit en l’acta del partit"
+            },
+            {
+              "num": "7.8",
+              "titulo": "L’entrenador informarà a un dels àrbitres del número del jugador que actuarà com a"
+            },
+            {
+              "num": "7.9",
+              "titulo": "El capità actuarà com a jugador-entrenador si no hi ha entrenador o bé aquest no pot"
+            },
+            {
+              "num": "7.10",
+              "titulo": "L’entrenador indicarà el llançador dels tirs lliures de l’equip per a tots els casos en què"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "titulo": "REGLAMENTACIÓ DEL JOC",
+      "articles": [
+        {
+          "numero": 8,
+          "titulo": "Temps de joc, tempteig empatat i pròrrogues",
+          "apartats": [
+            {
+              "num": "8.1",
+              "titulo": "8.2."
+            },
+            {
+              "num": "8.2",
+              "titulo": "8.3."
+            },
+            {
+              "num": "8.3",
+              "titulo": "El partit es compon de 4 quarts de 10 minuts cadascun."
+            },
+            {
+              "num": "8.4",
+              "titulo": "8.5."
+            },
+            {
+              "num": "8.5",
+              "titulo": "8.6."
+            },
+            {
+              "num": "8.6",
+              "titulo": "8.7."
+            },
+            {
+              "num": "8.7",
+              "titulo": "8.8."
+            },
+            {
+              "num": "8.8",
+              "titulo": "8.9."
+            },
+            {
+              "num": "8.9",
+              "titulo": "Art. 9"
+            }
+          ]
+        },
+        {
+          "numero": 9,
+          "titulo": "Començament i final d’un quart o del partit.",
+          "apartats": [
+            {
+              "num": "9.1",
+              "titulo": "El primer quart comença quan la pilota deixa la(les) ma(mans) de l’àrbitre principal en"
+            },
+            {
+              "num": "9.2",
+              "titulo": "La resta de quarts i pròrrogues comencen quan la pilota és a disposició del jugador"
+            },
+            {
+              "num": "9.3",
+              "titulo": "El partit no podrà començar si un equip no té en la pista de joc 5 jugadors preparats"
+            },
+            {
+              "num": "9.4",
+              "titulo": "En tots els partits, el primer equip nomenat en el programa (equip local), tindrà la seva"
+            },
+            {
+              "num": "9.5",
+              "titulo": "9.6."
+            },
+            {
+              "num": "9.6",
+              "titulo": "9.7."
+            },
+            {
+              "num": "9.7",
+              "titulo": "Els equips intercanviaran les cistelles a la segona meitat."
+            }
+          ]
+        },
+        {
+          "numero": 10,
+          "titulo": "Condició de la pilota",
+          "apartats": [
+            {
+              "num": "10.1",
+              "titulo": "10.2."
+            },
+            {
+              "num": "10.2",
+              "titulo": "10.3."
+            },
+            {
+              "num": "10.3",
+              "titulo": "10.4."
+            },
+            {
+              "num": "10.4",
+              "titulo": "La pilota pot ser tant viva com morta."
+            }
+          ]
+        },
+        {
+          "numero": 11,
+          "titulo": "Posició del jugador i de l’àrbitre",
+          "apartats": [
+            {
+              "num": "11.1",
+              "titulo": "La posició d’un jugador ve determinada pel lloc on toca a terra."
+            },
+            {
+              "num": "11.2",
+              "titulo": "La posició d’un àrbitre es determina de la mateixa manera que la d’un jugador. Si la"
+            }
+          ]
+        },
+        {
+          "numero": 12,
+          "titulo": "Salt entre dos i alternança de possessió",
+          "apartats": [
+            {
+              "num": "12.1",
+              "titulo": "Definició de salt entre dos"
+            },
+            {
+              "num": "12.2",
+              "titulo": "Procediment de salt entre dos"
+            },
+            {
+              "num": "12.3",
+              "titulo": "Sanció"
+            },
+            {
+              "num": "12.4",
+              "titulo": "Situacions de salt entre dos."
+            },
+            {
+              "num": "12.5",
+              "titulo": ""
+            },
+            {
+              "num": "12.6",
+              "titulo": "Procediment d’alternança de possessió"
+            }
+          ]
+        },
+        {
+          "numero": 13,
+          "titulo": "Com es juga la pilota",
+          "apartats": [
+            {
+              "num": "13.1",
+              "titulo": "13.2."
+            },
+            {
+              "num": "13.2",
+              "titulo": "13.3."
+            },
+            {
+              "num": "13.3",
+              "titulo": "Definició"
+            }
+          ]
+        },
+        {
+          "numero": 14,
+          "titulo": "Control de la pilota",
+          "apartats": [
+            {
+              "num": "14.1",
+              "titulo": "14.1.1."
+            }
+          ]
+        },
+        {
+          "numero": 15,
+          "titulo": "Jugador en acció de tir",
+          "apartats": [
+            {
+              "num": "15.1",
+              "titulo": "15.1.1."
+            }
+          ]
+        },
+        {
+          "numero": 16,
+          "titulo": "Encistellada: quan es marca i el seu valor",
+          "apartats": [
+            {
+              "num": "16.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "16.2",
+              "titulo": "Regla"
+            }
+          ]
+        },
+        {
+          "numero": 17,
+          "titulo": "Servei",
+          "apartats": [
+            {
+              "num": "17.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "17.2",
+              "titulo": ""
+            },
+            {
+              "num": "17.3",
+              "titulo": "Regla"
+            },
+            {
+              "num": "17.4",
+              "titulo": "Una infracció de l’ Art. 17.3 és una violació."
+            }
+          ]
+        },
+        {
+          "numero": 18,
+          "titulo": "Temps mort",
+          "apartats": [
+            {
+              "num": "18.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "18.2",
+              "titulo": "Regla"
+            },
+            {
+              "num": "18.3",
+              "titulo": "Procediment"
+            }
+          ]
+        },
+        {
+          "numero": 19,
+          "titulo": "Substitució",
+          "apartats": [
+            {
+              "num": "19.1",
+              "titulo": "19.2."
+            },
+            {
+              "num": "19.2",
+              "titulo": "19.2.1."
+            },
+            {
+              "num": "19.3",
+              "titulo": "19.3.1."
+            }
+          ]
+        },
+        {
+          "numero": 20,
+          "titulo": "Partit perdut per incompareixença",
+          "apartats": [
+            {
+              "num": "20.1",
+              "titulo": "20.2."
+            },
+            {
+              "num": "20.2",
+              "titulo": "20.2.1."
+            }
+          ]
+        },
+        {
+          "numero": 21,
+          "titulo": "Partit perdut per inferioritat",
+          "apartats": [
+            {
+              "num": "21.2",
+              "titulo": "21.2.1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 5,
+      "titulo": "VIOLACIONS",
+      "articles": [
+        {
+          "numero": 22,
+          "titulo": "Violacions",
+          "apartats": [
+            {
+              "num": "22.2",
+              "titulo": "Definició"
+            }
+          ]
+        },
+        {
+          "numero": 23,
+          "titulo": "Jugador fora del terreny de joc i pilota fora del terreny de joc",
+          "apartats": [
+            {
+              "num": "23.1",
+              "titulo": "23.1.1."
+            },
+            {
+              "num": "23.2",
+              "titulo": "23.2.1."
+            }
+          ]
+        },
+        {
+          "numero": 24,
+          "titulo": "Driblatge",
+          "apartats": [
+            {
+              "num": "24.1",
+              "titulo": "24.1.1"
+            },
+            {
+              "num": "24.2",
+              "titulo": "Art. 25 Avançament il·legal"
+            }
+          ]
+        },
+        {
+          "numero": 25,
+          "titulo": "Avançament il·legal",
+          "apartats": [
+            {
+              "num": "25.1",
+              "titulo": "25.1.1."
+            },
+            {
+              "num": "25.2",
+              "titulo": "25.2.1."
+            }
+          ]
+        },
+        {
+          "numero": 26,
+          "titulo": "3 segons",
+          "apartats": [
+            {
+              "num": "26.1",
+              "titulo": "Regla"
+            }
+          ]
+        },
+        {
+          "numero": 27,
+          "titulo": "Jugador estretament marcat",
+          "apartats": [
+            {
+              "num": "27.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "27.2",
+              "titulo": "Regla"
+            }
+          ]
+        },
+        {
+          "numero": 28,
+          "titulo": "8 segons",
+          "apartats": [
+            {
+              "num": "28.1",
+              "titulo": "28.1.1."
+            }
+          ]
+        },
+        {
+          "numero": 29,
+          "titulo": "Rellotge de llançament",
+          "apartats": [
+            {
+              "num": "29.1",
+              "titulo": "29.1.1."
+            },
+            {
+              "num": "29.2",
+              "titulo": "29.2.1."
+            }
+          ]
+        },
+        {
+          "numero": 30,
+          "titulo": "Retorn de la pilota a la pista de darrere",
+          "apartats": [
+            {
+              "num": "30.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "30.2",
+              "titulo": "Regla"
+            },
+            {
+              "num": "30.3",
+              "titulo": "Sanció"
+            }
+          ]
+        },
+        {
+          "numero": 31,
+          "titulo": "Interposició i interferència",
+          "apartats": [
+            {
+              "num": "31.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "31.2",
+              "titulo": "31.2.1."
+            },
+            {
+              "num": "31.3",
+              "titulo": "Sanció"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 6,
+      "titulo": "FALTES",
+      "articles": [
+        {
+          "numero": 32,
+          "titulo": "Faltes",
+          "apartats": [
+            {
+              "num": "32.1",
+              "titulo": "Definició"
+            }
+          ]
+        },
+        {
+          "numero": 33,
+          "titulo": "Contactes: principis generals",
+          "apartats": [
+            {
+              "num": "33.1",
+              "titulo": "Principi del cilindre"
+            },
+            {
+              "num": "33.2",
+              "titulo": "Principi de verticalitat"
+            },
+            {
+              "num": "33.3",
+              "titulo": "Posició legal de defensa"
+            },
+            {
+              "num": "33.4",
+              "titulo": "Defensa d’un jugador que controla la pilota"
+            },
+            {
+              "num": "33.5",
+              "titulo": "Defensa a un jugador que no controla la pilota"
+            },
+            {
+              "num": "33.6",
+              "titulo": "Jugador que és enlaire"
+            },
+            {
+              "num": "33.7",
+              "titulo": "Pantalla. Legal i il·legal"
+            },
+            {
+              "num": "33.8",
+              "titulo": "Carregar"
+            },
+            {
+              "num": "33.9",
+              "titulo": "Bloqueig"
+            },
+            {
+              "num": "33.10",
+              "titulo": "Àrees de semicercle de no càrrega"
+            },
+            {
+              "num": "33.11",
+              "titulo": "Contactar un adversari amb la(les) mà(mans) i/o el(s) braç(os)"
+            },
+            {
+              "num": "33.12",
+              "titulo": ""
+            },
+            {
+              "num": "33.13",
+              "titulo": "Defensa il·legal per l’esquena"
+            },
+            {
+              "num": "33.14",
+              "titulo": "Agafar"
+            },
+            {
+              "num": "33.15",
+              "titulo": "Empentar"
+            },
+            {
+              "num": "33.16",
+              "titulo": "Simular rebre una falta"
+            }
+          ]
+        },
+        {
+          "numero": 34,
+          "titulo": "Falta personal",
+          "apartats": [
+            {
+              "num": "34.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "34.2",
+              "titulo": "Sanció"
+            }
+          ]
+        },
+        {
+          "numero": 35,
+          "titulo": "Doble falta",
+          "apartats": [
+            {
+              "num": "35.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "35.2",
+              "titulo": "Sanció"
+            }
+          ]
+        },
+        {
+          "numero": 36,
+          "titulo": "Falta tècnica",
+          "apartats": [
+            {
+              "num": "36.1",
+              "titulo": "36.1.1."
+            },
+            {
+              "num": "36.2",
+              "titulo": "36.2.1."
+            },
+            {
+              "num": "36.3",
+              "titulo": "Sanció"
+            }
+          ]
+        },
+        {
+          "numero": 37,
+          "titulo": "Falta disruptiva",
+          "apartats": [
+            {
+              "num": "37.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "37.2",
+              "titulo": "Sanció"
+            }
+          ]
+        },
+        {
+          "numero": 38,
+          "titulo": "Falta flagrant",
+          "apartats": [
+            {
+              "num": "38.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "38.2",
+              "titulo": "Sanció"
+            }
+          ]
+        },
+        {
+          "numero": 39,
+          "titulo": "Falta desqualificant",
+          "apartats": [
+            {
+              "num": "39.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "39.2",
+              "titulo": "Violència"
+            },
+            {
+              "num": "39.3",
+              "titulo": "Sanció"
+            }
+          ]
+        },
+        {
+          "numero": 40,
+          "titulo": "Baralles",
+          "apartats": [
+            {
+              "num": "40.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "40.2",
+              "titulo": "Regla"
+            },
+            {
+              "num": "40.3",
+              "titulo": "Sanció"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 7,
+      "titulo": "DISPOSICIONS GENERALS",
+      "articles": [
+        {
+          "numero": 41,
+          "titulo": "Límit de faltes d’un jugador/entrenador i desqualificacions del partit",
+          "apartats": [
+            {
+              "num": "41.1",
+              "titulo": "Un jugador que ha comès 5 faltes, n'ha de ser informat per un dels àrbitres i ha"
+            },
+            {
+              "num": "41.2",
+              "titulo": "Un jugador-entrenador que ha comès 5 faltes com a jugador és un jugador"
+            },
+            {
+              "num": "41.3",
+              "titulo": "Les faltes comeses per un jugador que prèviament havia comès la seva 5a falta es"
+            },
+            {
+              "num": "41.4",
+              "titulo": "Un jugador que ha comès dues faltes tècniques o 2 faltes flagrants o 1 falta flagrant i"
+            },
+            {
+              "num": "41.5",
+              "titulo": "Un entrenador que ha comès 2 faltes tècniques (‘C’) a causa de la seva conducta"
+            },
+            {
+              "num": "41.6",
+              "titulo": "Qualsevol jugador, substitut, entrenador, ajudant, jugador eliminat, o acompanyant"
+            }
+          ]
+        },
+        {
+          "numero": 42,
+          "titulo": "Faltes d’equip: sanció",
+          "apartats": [
+            {
+              "num": "42.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "42.2",
+              "titulo": "Regla"
+            }
+          ]
+        },
+        {
+          "numero": 43,
+          "titulo": "Situacions especials",
+          "apartats": [
+            {
+              "num": "43.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "43.2",
+              "titulo": "Procediment"
+            }
+          ]
+        },
+        {
+          "numero": 44,
+          "titulo": "Llançaments lliures",
+          "apartats": [
+            {
+              "num": "44.1",
+              "titulo": "Definició"
+            },
+            {
+              "num": "44.2",
+              "titulo": "Regla"
+            },
+            {
+              "num": "44.3",
+              "titulo": "44.3.1."
+            }
+          ]
+        },
+        {
+          "numero": 45,
+          "titulo": "Errors rectificables",
+          "apartats": [
+            {
+              "num": "45.1",
+              "titulo": "45.1.1"
+            },
+            {
+              "num": "45.2",
+              "titulo": "Errors rectificables – Procediments generals"
+            },
+            {
+              "num": "45.3",
+              "titulo": "45.3.1."
+            },
+            {
+              "num": "45.4",
+              "titulo": "Errors corregibles de categoria 1 - Procediments especials"
+            },
+            {
+              "num": "45.5",
+              "titulo": "45.6."
+            },
+            {
+              "num": "45.6",
+              "titulo": "45.6.1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 8,
+      "titulo": "ÀRBITRES, AUXILIARS DE TAULA, COMISSARIS:",
+      "articles": [
+        {
+          "numero": 46,
+          "titulo": "Els àrbitres, auxiliars de taula i comissari",
+          "apartats": [
+            {
+              "num": "46.1",
+              "titulo": "Els àrbitres seran un àrbitre principal i 1 o 2 àrbitres auxiliars. Estaran assistits pels"
+            },
+            {
+              "num": "46.2",
+              "titulo": "Els auxiliars de taula seran un anotador, un ajudant d’anotador, un cronometrador i"
+            },
+            {
+              "num": "46.3",
+              "titulo": "El comissari s’haurà d'asseure entre l'anotador i el cronometrador. La seva funció"
+            },
+            {
+              "num": "46.4",
+              "titulo": "Els àrbitres designats per a un partit no han de tenir cap vinculació amb cap dels"
+            },
+            {
+              "num": "46.5",
+              "titulo": "Els àrbitres, els auxiliars de taula i el comissari han de dirigir el joc conforme al"
+            },
+            {
+              "num": "46.6",
+              "titulo": "L'uniforme dels àrbitres està compost per una samarreta d’àrbitre, pantaló llarg negre,"
+            },
+            {
+              "num": "46.7",
+              "titulo": "Els àrbitres i els auxiliars de taula estaran uniformats."
+            }
+          ]
+        },
+        {
+          "numero": 47,
+          "titulo": "Àrbitre principal: deures i obligacions",
+          "apartats": [
+            {
+              "num": "47.1",
+              "titulo": "Verificar i aprovar tot l'equipament que s'utilitzarà durant el joc."
+            },
+            {
+              "num": "47.2",
+              "titulo": "Designar quin serà el rellotge oficial del partit, el rellotge de llançament, el cronòmetre"
+            },
+            {
+              "num": "47.3",
+              "titulo": "Triarà la pilota de joc entre les 2 pilotes utilitzades que, com a mínim, proporcionarà"
+            },
+            {
+              "num": "47.4",
+              "titulo": "No permetrà que els jugadors portin al damunt objectes que puguin causar lesions a"
+            },
+            {
+              "num": "47.5",
+              "titulo": "Administrarà el salt entre dos inicial del primer quart i el servei d’alternança a l’inici de"
+            },
+            {
+              "num": "47.6",
+              "titulo": "Té el poder d'aturar el joc quan les condicions ho justifiquin."
+            },
+            {
+              "num": "47.7",
+              "titulo": "També té l’autoritat per determinar si un equip ha de perdre el partit per"
+            },
+            {
+              "num": "47.8",
+              "titulo": "Ha de repassar acuradament l'acta del partit al final del temps de joc, o en qualsevol"
+            },
+            {
+              "num": "47.9",
+              "titulo": "Aprovarà i signarà l’acta al final del temps de joc finalitzant d’aquesta manera la"
+            },
+            {
+              "num": "47.10",
+              "titulo": "Farà constar en el revers de l’acta, en el vestuari, abans de signar-la:"
+            },
+            {
+              "num": "47.11",
+              "titulo": "47.12."
+            },
+            {
+              "num": "47.12",
+              "titulo": "47.13."
+            },
+            {
+              "num": "47.13",
+              "titulo": "47.14."
+            },
+            {
+              "num": "47.14",
+              "titulo": "La seva decisió serà definitiva quan sigui necessari o quan els àrbitres no estiguin"
+            }
+          ]
+        },
+        {
+          "numero": 48,
+          "titulo": "Àrbitres: drets i obligacions",
+          "apartats": [
+            {
+              "num": "48.1",
+              "titulo": "48.2."
+            },
+            {
+              "num": "48.2",
+              "titulo": "48.3."
+            },
+            {
+              "num": "48.3",
+              "titulo": "Els àrbitres tenen poder de decisió per les infraccions comeses contra les regles, sigui"
+            },
+            {
+              "num": "48.4",
+              "titulo": "48.5."
+            },
+            {
+              "num": "48.5",
+              "titulo": "48.6."
+            },
+            {
+              "num": "48.6",
+              "titulo": "48.7."
+            },
+            {
+              "num": "48.7",
+              "titulo": "48.8."
+            },
+            {
+              "num": "48.8",
+              "titulo": "responsable o que no posa l’adversari que ha patit el contacte en una posició de"
+            }
+          ]
+        },
+        {
+          "numero": 49,
+          "titulo": "L'anotador i l'ajudant d'anotador: deures",
+          "apartats": [
+            {
+              "num": "49.1",
+              "titulo": "L’anotador haurà d’utilitzar l’acta del partit i guardarà un registre de:"
+            },
+            {
+              "num": "49.2",
+              "titulo": "àrbitres. Haurà d’informar els àrbitres quan un entrenador demani de manera"
+            },
+            {
+              "num": "49.3",
+              "titulo": "ser solucionada, serà sempre l'acta oficial que tindrà prioritat i, en conseqüència es"
+            }
+          ]
+        },
+        {
+          "numero": 50,
+          "titulo": "El cronometrador: deures",
+          "apartats": [
+            {
+              "num": "50.1",
+              "titulo": "50.2."
+            },
+            {
+              "num": "50.2",
+              "titulo": "El cronometrador disposarà d’un rellotge de partit i un cronòmetre i:"
+            },
+            {
+              "num": "50.3",
+              "titulo": "50.4."
+            },
+            {
+              "num": "50.4",
+              "titulo": "Una cistella és reeixida quan el rellotge del partit mostra 2:00 minuts o menys"
+            }
+          ]
+        },
+        {
+          "numero": 51,
+          "titulo": "Operador del rellotge de llançament: deures",
+          "apartats": [
+            {
+              "num": "51.1",
+              "titulo": "51.2."
+            },
+            {
+              "num": "51.2",
+              "titulo": "L’operador del rellotge de llançament tindrà un rellotge de llançament que serà utilitzat"
+            },
+            {
+              "num": "51.3",
+              "titulo": "Aturarà i reiniciarà a 24 segons, sense mostrar cap xifra, quan:"
+            },
+            {
+              "num": "51.4",
+              "titulo": "S’aturarà i tornarà a 14 segons, amb 14 segons visibles, quan:"
+            },
+            {
+              "num": "51.5",
+              "titulo": "S’apagarà, després de que la pilota esdevingui morta i el rellotge de joc s’hagi aturat,"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

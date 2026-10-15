@@ -1,0 +1,27 @@
+---
+interface Props {
+  label?: string;
+}
+
+const { label = 'Tornar' } = Astro.props;
+---
+
+<a
+  href="/"
+  id="back-link"
+  title="Tornar a l'origen"
+  class="inline-flex items-center gap-1.5 rounded-lg border border-court-200 bg-white px-3 py-1.5 text-sm font-medium transition hover:border-accent hover:text-accent dark:border-court-700 dark:bg-court-800"
+>
+  <span aria-hidden="true">←</span>
+  {label}
+</a>
+
+<script>
+  const link = document.getElementById('back-link');
+  link?.addEventListener('click', (event) => {
+    if (window.history.length > 1) {
+      event.preventDefault();
+      window.history.back();
+    }
+  });
+</script>

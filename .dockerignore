@@ -1,0 +1,26 @@
+# Dependencies / caches
+node_modules
+.astro
+
+# Build output (rebuilt inside the image)
+dist
+
+# Git and tooling
+.git
+.gitignore
+.github
+
+# Local reference material (not served)
+docs
+
+# TLS material (mounted at runtime, never baked into the image)
+docker/certs/*.crt
+docker/certs/*.key
+docker/certs/*.pem
+
+# Local env / editor / logs
+.env
+.env.*
+*.log
+.DS_Store
+Thumbs.db

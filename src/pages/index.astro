@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.numero - b.data.numero,
+);
+
+const rules = new Map();
+for (const a of articles) {
+  if (!rules.has(a.data.regla)) {
+    rules.set(a.data.regla, { numero: a.data.regla, titol: a.data.reglaTitol, articles: [] });
+  }
+  rules.get(a.data.regla).articles.push(a);
+}
+const ruleList = [...rules.values()].sort((a, b) => a.numero - b.numero);
+---
+
+<Base title="Reglament de Bàsquetbol FCBQ/FIBA 2026">
+  <section class="mb-10">
+    <h1 class="text-3xl font-bold tracking-tight">Reglament de Bàsquetbol 2026</h1>
+    <p class="mt-2 max-w-2xl text-court-600 dark:text-court-300">
+      Consulta ràpida de les Regles FIBA 2026 v1.1 adaptades per l’FCBQ. Contingut de mostra
+      (Lorem Ipsum) estructurat segons les regles i els articles del reglament.
+    </p>
+    <div class="mt-4 flex gap-4 text-sm">
+      <span class="rounded-full bg-court-200 px-3 py-1 dark:bg-court-700">{ruleList.length} regles</span>
+      <span class="rounded-full bg-court-200 px-3 py-1 dark:bg-court-700">{articles.length} articles</span>
+    </div>
+  </section>
+
+  <div class="space-y-8">
+    {ruleList.map((rule) => (
+      <section>
+        <h2 class="mb-3 border-b border-court-200 pb-2 text-xl font-semibold dark:border-court-700">
+          <span class="text-accent">Regla {rule.numero}</span> — {rule.titol}
+        </h2>
+        <ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {rule.articles.map((a) => (
+            <li>
+              <a
+                href={`/articles/${a.id}`}
+                class="flex items-baseline gap-2 rounded-lg border border-court-200 bg-white px-3 py-2 text-sm transition hover:border-accent hover:shadow-sm dark:border-court-700 dark:bg-court-800"
+              >
+                <span class="font-mono text-xs text-accent">{a.data.numero}</span>
+                <span>{a.data.titulo}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>
