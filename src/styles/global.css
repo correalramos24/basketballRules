@@ -156,6 +156,42 @@ body {
   margin-bottom: 0;
 }
 
+/* FCBQ sanction callout — red box around the `Sanció` sub-article and its text,
+   matching the red rectangle drawn in the rulebook PDF. */
+.sancio {
+  border: 2px solid #dc3545;
+  border-radius: 0.5rem;
+  background-color: rgb(220 53 69 / 0.07);
+  padding: 0.85rem 1rem;
+  margin-block: 1.25rem;
+}
+
+.dark .sancio {
+  background-color: rgb(220 53 69 / 0.14);
+}
+
+/* The box itself sits flush with the id column, like the heading does. */
+.prose > .sancio {
+  padding-inline-start: 0;
+}
+
+/* …and body text inside it aligns under the title, exactly as outside. */
+.sancio > :not(h2) {
+  padding-inline-start: calc(var(--sub-id-col) + var(--sub-id-gap));
+}
+
+.sancio > .sub-item {
+  padding-inline-start: 0;
+}
+
+.sancio > :first-child {
+  margin-top: 0;
+}
+
+.sancio > :last-child {
+  margin-bottom: 0;
+}
+
 /* Article sidebar: always expanded on large screens, collapsible (details) on small */
 @media (min-width: 64rem) {
   .article-nav > summary {
