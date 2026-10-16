@@ -85,7 +85,7 @@ case "$cmd" in
     node scripts/generate_articles.mjs
     ;;
   parse)
-    pdftotext docs/regles_fcbq_2026.pdf /tmp/regles.txt
+    pdftotext docs/sources/regles_fcbq_2026.pdf /tmp/regles.txt
     python3 scripts/parse_rulebook.py /tmp/regles.txt scripts/rulebook-2026.json
     ;;
   clean)

@@ -4,7 +4,7 @@
 Usage:
     python3 scripts/parse_rulebook.py /tmp/regles_nl.txt scripts/rulebook-2026.json
 
-Reads the plain-text output of `pdftotext docs/regles_fcbq_2026.pdf` and emits a
+Reads the plain-text output of `pdftotext docs/sources/regles_fcbq_2026.pdf` and emits a
 nested model: rules -> articles -> sub-articles, with titles.
 """
 import json
