@@ -29,6 +29,18 @@ Then open **http://localhost:8080**.
 - **`.dockerignore`** — keeps `node_modules/`, `dist/`, `.git/`, `docs/` and TLS material
   out of the build context.
 
+## Deploying to production
+
+Production (the RPi4) tracks `main`. Deploy from the repo checkout on the host:
+
+```bash
+development/deploy.sh
+```
+
+It runs `git pull --ff-only`, `docker compose up -d --build`, then waits for the
+container health check to pass. Override defaults with `HEALTH_URL`, `CONTAINER`
+and `TIMEOUT` env vars.
+
 ## Networking / TLS
 
 The container speaks plain HTTP on **8080** and exposes **8080** externally, so it can sit
