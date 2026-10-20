@@ -10,7 +10,7 @@ and the shared UI.
 | Framework | **Astro 7** (static output) + **TypeScript** |
 | Styling | **Tailwind CSS v4** (`@tailwindcss/vite`) + `@tailwindcss/typography` |
 | Content | **@astrojs/mdx** — one MDX file per article (`.astro` when a bespoke layout is needed) |
-| Search | **FlexSearch** (dependency in place; client island planned) |
+| Search | **FlexSearch** client island over a build-time JSON index (`/search-index.json`) |
 | Server | **nginx:alpine** serving `dist/` on port **8080** |
 | Runtime | **Docker** (multi-stage build) + `docker-compose` |
 
@@ -48,17 +48,21 @@ and the shared UI.
 │   │   └── Article.astro          Two-column article layout (sidebar + content)
 │   ├── components/
 │   │   ├── SiteHeader.astro       Common top navigation (active link highlight)
-│   │   ├── ArticleSidebar.astro   Article switcher (grouped by rule)
-│   │   ├── BackLink.astro         Back-to-origin button
+│   │   ├── SearchIsland.astro     FlexSearch client island in the header
+│   │   ├── DocSwitcher.astro      Header dropdown: Reglament ↔ Interpretacions
+│   │   ├── ArticleSidebar.astro   Article / interpretation switcher (grouped by rule)
+│   │   ├── BackLink.astro         Back-to-landing-page button
 │   │   └── ThemeToggle.astro      Light/dark switch
 │   ├── lib/
 │   │   ├── rehype-rules.mjs       Sub-article id columns (rehype)
 │   │   └── remark-annex.mjs       Collapsible annexes (remark)
 │   ├── pages/
-│   │   ├── index.astro            Article list + lookup entry point
-│   │   ├── regles.astro           Rules index
-│   │   └── articles/
-│   │       └── [slug].astro       Renders a single article
+│   │   ├── index.astro            Landing: the project explained, document collection
+│   │   ├── search-index.json.ts   Build-time search index records (FlexSearch input)
+│   │   ├── articles/
+│   │   │   └── [...slug].astro    Renders a single article
+│   │   └── interpretacions/
+│   │       └── [id].astro         Renders a single interpretation
 │   └── styles/
 │       └── global.css             Tailwind entry + design tokens
 │
@@ -86,8 +90,10 @@ Articles are a single content collection defined in `src/content.config.ts`. Ast
 **auto-discovers** every file under `src/content/articles/`, so adding or removing an
 article never requires touching a central registry.
 
-- `src/pages/index.astro` — lists every non-draft article (the lookup entry point).
-- `src/pages/regles.astro` — the rules overview.
+- `src/pages/index.astro` — landing page presenting the document collection.
+- There are no list pages: navigation is the per-document sidebar plus the header
+  `DocSwitcher` dropdown (shown only on article and interpretation pages), which jumps to the matching
+  entry in the other document (Art. 2 ↔ interpretation 2) when one exists.
 - `src/pages/articles/[...slug].astro` — renders a single article; the slug is the file
   name (`art-01` → `/articles/art-01`).
 
@@ -132,6 +138,24 @@ runs at the Markdown (mdast) stage: the plugin rewrites the `div` into a native
 `<details><summary>` (open by default), using the first bold paragraph as the summary.
 The look lives in `src/styles/global.css` under `.annex`.
 
+## Site-wide search
+
+`src/components.SearchIsland.astro` is a FlexSearch client island living in the top
+navbar on every page. The pipeline:
+
+- **Build time** — `src/pages/search-index.json.ts` walks every non-draft entry of the
+  content collections (articles + the new `interpretacions` collection, which is
+  detected automatically) and emits `/search-index.json`: one record per document with
+  `{id, tipo, url, titulo, numero, contexto, texto}`, where `texto` is the raw Markdown
+  body stripped of markup.
+- **Runtime** — on the first keystroke the island fetches the JSON, builds a
+  FlexSearch `Document` index (fields `titulo`, `numero`, `texto`) and caches it for the
+  rest of the session.
+- **Results** — a dropdown lists the top matches with the document type
+  (Reglament / Interpretacions), the article number and a snippet around the first hit
+  with the query terms highlighted. Arrow keys move through the results, `Enter`
+  navigates, `Esc` closes, and `/` focuses the search box from anywhere.
+
 ## Navigation UI
 
 Shared across the site and kept in a few small components:
@@ -142,8 +166,7 @@ Shared across the site and kept in a few small components:
   grouped by rule with the current article highlighted, auto-scrolled into view, and a
   quick filter box. It is a sticky column on large screens and collapses into a
   "Canviar d'article" disclosure on small screens.
-- **`BackLink.astro`** — a clear **"← Tornar"** button that returns to the origin page
-  (browser history, falling back to `/`).
+- **`BackLink.astro`** — a clear **"← Tornar"** button that returns to the landing page (`/`).
 
 The two-column article layout (sidebar + content) is provided by `Article.astro`:
 

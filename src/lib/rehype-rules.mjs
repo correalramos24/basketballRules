@@ -26,6 +26,9 @@ function spanText(className, value) {
 
 const SUB_ID = /^\d+(?:\.\d+){1,}\.?$/;
 
+// Heading ids: rulebook `4.1`, interpretations `36-1` or `29/51-12`.
+const HEADING_ID = String.raw`\d+(?:\/\d+)?(?:[.-]\d+)*`;
+
 function transformHeading(node) {
   const text = textOf(node).trim();
   if (!text) return;
@@ -33,12 +36,14 @@ function transformHeading(node) {
   let id = '';
   let title = '';
 
-  let match = text.match(/^(\d+(?:\.\d+)*)\s+(.+)$/);
+  let match = text.match(new RegExp(`^(${HEADING_ID})\\s+(.+)$`));
   if (match) {
     id = match[1];
     title = match[2].trim();
   } else {
-    match = text.match(/^Apartat\s+(\d+(?:\.\d+)*)$/i) || text.match(/^(\d+(?:\.\d+)*)$/);
+    match =
+      text.match(new RegExp(`^Apartat\\s+(${HEADING_ID})$`, 'i')) ||
+      text.match(new RegExp(`^(${HEADING_ID})$`));
     if (match) id = match[1];
   }
 
@@ -68,6 +73,7 @@ function transformSubItem(node) {
 /**
  * Markdown niceties for the rulebook:
  *   - `## 4.1 Definició`      -> id `4.1` + title `Definició` in their own column
+ *   - `## 36-1`, `## 29/51-12` -> interpretation ids, styled the same way
  *   - `**4.1.1.** Un membre…` -> id `4.1.1.` + body `Un membre…` (any depth, e.g. 4.4.4.1)
  *     Also applies to article-level clauses without a title, e.g. `**5.1.** …`
  *

@@ -17,6 +17,9 @@ light/dark themes and is packaged as a small Docker image for deployment.
 - Hanging-indent layout: article, sub-article and clause ids in one column.
 - Collapsible FCBQ annex callouts.
 - Shared navigation: header, grouped article sidebar with filter, back link.
+- Site-wide search: FlexSearch client island over a build-time JSON index
+  (`/search-index.json`); covers the rulebook and (as soon as it is generated)
+  the interpretations collection. Focus it anywhere with `/`.
 - Light/dark theme with OS preference detection and no flash on load.
 - Static output served by nginx in a multi-stage Docker image on port 8080.
 

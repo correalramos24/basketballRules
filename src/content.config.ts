@@ -13,4 +13,14 @@ const articles = defineCollection({
   }),
 });
 
-export const collections = { articles };
+const interpretacions = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/interpretacions' }),
+  schema: z.object({
+    numero: z.string(),
+    titulo: z.string(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { articles, interpretacions };

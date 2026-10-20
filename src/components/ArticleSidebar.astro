@@ -3,26 +3,57 @@ import { getCollection } from 'astro:content';
 
 interface Props {
   current?: string;
+  /** Which document to list; interpretations are grouped by their article's rule. */
+  doc?: 'reglament' | 'interpretacions';
 }
 
-const { current } = Astro.props;
+const { current, doc = 'reglament' } = Astro.props;
 
 const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.numero - b.data.numero,
 );
 
+type Item = { id: string; href: string; numero: number; label: string; titulo: string; regla: number };
+
+let items: Item[];
+if (doc === 'interpretacions') {
+  const byNumero = new Map(articles.map((a) => [a.data.numero, a]));
+  const interp = await getCollection('interpretacions', ({ data }) => !data.draft);
+  items = interp
+    .map((entry) => {
+      // Some interpretations span two articles ("18/19"); sort and group by the first.
+      const numero = parseInt(entry.data.numero, 10);
+      return {
+        id: entry.id,
+        href: `/interpretacions/${entry.id}`,
+        numero,
+        label: entry.data.numero,
+        titulo: entry.data.titulo,
+        regla: byNumero.get(numero)?.data.regla ?? 0,
+      };
+    })
+    .sort((a, b) => a.numero - b.numero);
+} else {
+  items = articles.map((a) => ({
+    id: a.id,
+    href: `/articles/${a.id}`,
+    numero: a.data.numero,
+    label: String(a.data.numero),
+    titulo: a.data.titulo,
+    regla: a.data.regla,
+  }));
+}
+
+const ruleTitles = new Map(articles.map((a) => [a.data.regla, a.data.reglaTitol]));
 const rules = new Map();
-for (const article of articles) {
-  if (!rules.has(article.data.regla)) {
-    rules.set(article.data.regla, {
-      numero: article.data.regla,
-      titol: article.data.reglaTitol,
-      items: [],
-    });
+for (const item of items) {
+  if (!rules.has(item.regla)) {
+    rules.set(item.regla, { numero: item.regla, titol: ruleTitles.get(item.regla), items: [] });
   }
-  rules.get(article.data.regla).items.push(article);
+  rules.get(item.regla).items.push(item);
 }
 const ruleList = [...rules.values()].sort((a, b) => a.numero - b.numero);
+const noun = doc === 'interpretacions' ? 'interpretació' : 'article';
 ---
 
 <aside class="mb-6 lg:mb-0">
@@ -32,24 +63,24 @@ const ruleList = [...rules.values()].sort((a, b) => a.numero - b.numero);
     <summary
       class="flex cursor-pointer list-none items-center justify-between px-4 py-3 font-medium lg:hidden"
     >
-      <span>Canviar d'article</span>
+      <span>Canviar d'{noun}</span>
       <span class="transition group-open:rotate-180" aria-hidden="true">⌄</span>
     </summary>
 
     <div class="px-4 pb-4 lg:sticky lg:top-20 lg:px-0 lg:pb-0">
       <label class="relative mb-3 block">
-        <span class="sr-only">Cercar article</span>
+        <span class="sr-only">Cercar {noun}</span>
         <input
           id="article-filter"
           type="search"
-          placeholder="Cercar article…"
+          placeholder={`Cercar ${noun}…`}
           class="w-full rounded-lg border border-court-200 bg-white px-3 py-2 text-sm outline-none placeholder:text-court-400 focus:border-accent dark:border-court-700 dark:bg-court-900"
         />
       </label>
 
       <nav
         id="article-nav"
-        aria-label="Articles"
+        aria-label={doc === 'interpretacions' ? 'Interpretacions' : 'Articles'}
         class="max-h-[60vh] space-y-4 overflow-y-auto pr-1"
       >
         {ruleList.map((rule) => (
@@ -58,22 +89,22 @@ const ruleList = [...rules.values()].sort((a, b) => a.numero - b.numero);
               <span class="text-accent">Regla {rule.numero}</span> · {rule.titol}
             </p>
             <ul class="space-y-0.5">
-              {rule.items.map((article) => (
+              {rule.items.map((item) => (
                 <li data-item>
                   <a
-                    href={`/articles/${article.id}`}
-                    aria-current={article.id === current ? 'page' : undefined}
+                    href={item.href}
+                    aria-current={item.id === current ? 'page' : undefined}
                     class:list={[
                       'flex items-baseline gap-2 rounded-md px-2 py-1 text-sm transition',
-                      article.id === current
+                      item.id === current
                         ? 'bg-accent/10 font-medium text-accent'
                         : 'text-court-700 hover:bg-court-100 dark:text-court-200 dark:hover:bg-court-700',
                     ]}
                   >
-                    <span class="w-6 shrink-0 text-right font-mono text-xs text-court-400">
-                      {article.data.numero}
+                    <span class="min-w-6 shrink-0 text-right font-mono text-xs text-court-400">
+                      {item.label}
                     </span>
-                    <span>{article.data.titulo}</span>
+                    <span>{item.titulo}</span>
                   </a>
                 </li>
               ))}

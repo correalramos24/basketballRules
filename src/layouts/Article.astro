@@ -5,17 +5,20 @@ import BackLink from '../components/BackLink.astro';
 
 interface Props {
   slug: string;
-  numero: number;
+  numero: number | string;
   titulo: string;
+  /** Which document the page belongs to; picks the sidebar's list and the page title. */
+  doc?: 'reglament' | 'interpretacions';
 }
 
-const { slug, numero, titulo } = Astro.props;
+const { slug, numero, titulo, doc = 'reglament' } = Astro.props;
 const artClass = `art-${String(numero).padStart(2, '0')}`;
+const docTitle = doc === 'interpretacions' ? 'Interpretacions 2026' : 'Reglament 2026';
 ---
 
-<Base title={`Art. ${numero} ${titulo} — Reglament 2026`}>
+<Base title={`Art. ${numero} ${titulo} — ${docTitle}`}>
   <div class="lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-10">
-    <ArticleSidebar current={slug} />
+    <ArticleSidebar current={slug} doc={doc} />
 
     <div class="min-w-0">
       <div class="mb-4">

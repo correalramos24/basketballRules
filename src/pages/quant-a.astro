@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+
+const AUTHOR_NAME = 'Victor Correal Ramos';
+const AUTHOR_ROLE = "Informàtic i àrbitre de bàsquet";
+
+// Esborrany de mostra; substitueix pel text de debò quan toc.
+const AUTHOR_BIO = [
+  "Graduat en Enginyeria Informàtica (especialitzat en hardware) amb més de 6 anys d'experiència en àmbits molt diversos de la informàtica: HPC, suport a usuaris, desenvolupament d'aplicacions web, gestió d'infraestructura entre d'altres.",
+  "També sóc àrbitre de bàsquet des del 2014.",
+];
+
+const SHOTS = [
+  { src: '/fotos/bsc.jpg', caption: 'Informàtica - HPC' },
+  { src: '/fotos/ref.jpg', caption: 'Arbitratge' },
+];
+
+const INFRA = [
+  { src: '/fotos/infra.jpg', caption: 'Infraestructura - homelab' },
+  { src: '/fotos/infra2.jpg', caption: 'Raspberry Pi 4' },
+];
+---
+
+<Base
+  title="Quant a — Regles de basquetbol"
+  description="Qui hi ha darrere Regles de basquetbol i per què és un projecte personal que corre en una Raspberry Pi."
+>
+  <div class="mx-auto max-w-3xl">
+    <h1 class="text-3xl font-bold tracking-tight">Quant a</h1>
+    <p class="mt-1 text-sm text-court-500">Un projecte personal</p>
+
+    <div
+      class="mt-5 rounded-xl border border-court-200 bg-court-100/60 p-4 text-sm text-court-700 dark:border-court-700 dark:bg-court-700/40 dark:text-court-200"
+    >
+      Regles de basquetbol està <strong>en desenvolupament</strong> i és un projecte
+      privat i personal.
+    </div>
+
+    <h2 class="mt-8 text-xl font-semibold">Qui hi ha darrere</h2>
+    <div class="mt-4 flex flex-wrap items-center gap-6">
+      <img
+        class="h-[92px] w-[92px] rounded-full border-[3px] border-accent object-cover shadow-sm sm:h-[118px] sm:w-[118px]"
+        src="/fotos/author.jpg"
+        alt={`Foto de ${AUTHOR_NAME}`}
+      />
+      <div class="min-w-0">
+        <p class="text-[21px] font-bold leading-tight">{AUTHOR_NAME}</p>
+        <p class="mt-1 text-sm text-court-500">{AUTHOR_ROLE}</p>
+      </div>
+    </div>
+
+    {AUTHOR_BIO.map((p) => <p class="mt-3 text-sm leading-relaxed text-court-600 dark:text-court-300">{p}</p>)}
+
+    <div class="mt-5 grid gap-4 sm:grid-cols-2">
+      {SHOTS.map((shot) => (
+        <figure class="overflow-hidden rounded-2xl border border-court-200 bg-white shadow-sm dark:border-court-700 dark:bg-court-800">
+          <img
+            src={shot.src}
+            alt={shot.caption}
+            loading="lazy"
+            class="max-h-[420px] w-full bg-court-100 object-contain dark:bg-court-900"
+          />
+          <figcaption class="px-3.5 py-2 text-[13px] text-court-500">{shot.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <h2 class="mt-10 text-xl font-semibold">Un projecte de stack completa</h2>
+    <p class="mt-3 text-sm leading-relaxed text-court-600 dark:text-court-300">
+      Aquest projecte va néixer com una excusa per muntar una <strong>stack
+      completa</strong> aprenent de cada capa. En lloc de recolzar-se en serveis al
+      núvol, tot s'executa en una <strong>Raspberry Pi</strong> de casa meva.
+    </p>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2">
+      {INFRA.map((fig) => (
+        <figure class="overflow-hidden rounded-2xl border border-court-200 bg-white shadow-sm dark:border-court-700 dark:bg-court-800">
+          <img
+            src={fig.src}
+            alt={fig.caption}
+            loading="lazy"
+            class="h-[340px] w-full object-cover"
+          />
+          <figcaption class="px-3.5 py-2.5 text-[13px] text-court-500">{fig.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <ul class="mt-4 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-court-600 marker:text-accent dark:text-court-300">
+      <li><strong>Infraestructura:</strong> una Raspberry Pi amb Docker,
+      volums per no perdre les dades, healthcheck del contenidor.</li>
+      <li><strong>Contingut:</strong> documents d'arbitratge digitalitzats de
+      primera font, un fitxer MDX per article, revisions a mà article a article i
+      el text viu repositat a Git.</li>
+      <li><strong>Servei:</strong> web estàtica Astro amb nginx en un contenidor
+      Alpine darrere de TLS a la proxy del servidor.</li>
+      <li><strong>Cerca:</strong> índex generat a la build i consultat en
+      client amb FlexSearch.</li>
+      <li><strong>Vibe Coding:</strong> tot el projecte ha estat implementat en
+      temps rècord, gràcies a OpenCode.</li>
+    </ul>
+    <p class="mt-4 text-sm leading-relaxed text-court-600 dark:text-court-300">
+      La idea és senzilla: construir una eina útil per a mi mateix i, de pas,
+      entendre com encaixen totes les peces, de baix a dalt.
+    </p>
+
+    <p class="mt-10 text-sm text-court-500">Regles de basquetbol · Projecte en desenvolupament</p>
+  </div>
+</Base>

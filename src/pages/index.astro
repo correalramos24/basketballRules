@@ -5,50 +5,140 @@ import Base from '../layouts/Base.astro';
 const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.numero - b.data.numero,
 );
+const rules = new Set(articles.map((a) => a.data.regla));
 
-const rules = new Map();
-for (const a of articles) {
-  if (!rules.has(a.data.regla)) {
-    rules.set(a.data.regla, { numero: a.data.regla, titol: a.data.reglaTitol, articles: [] });
-  }
-  rules.get(a.data.regla).articles.push(a);
-}
-const ruleList = [...rules.values()].sort((a, b) => a.numero - b.numero);
+const documents = [
+  {
+    href: '/articles/art-01',
+    titol: 'Regles oficials del bàsquetbol',
+    edicio: 'FIBA 2026 v1.1 · adaptades a l’FCBQ',
+    descripcio:
+      'El text íntegre del reglament FIBA 2026 tal com s’aplica a les competicions de la Federació Catalana de Basquetbol: regles, articles, sub-articles i els annexos de l’FCBQ.',
+    chips: [],
+    disponible: true,
+  },
+  {
+    href: '/interpretacions/int-02',
+    titol: 'Interpretacions oficials de les regles',
+    edicio: 'FIBA 2026 v1.0 · agost de 2026',
+    descripcio:
+      'Les interpretacions FIBA 2026 traduiïdes al català: les situacions pràctiques i els exemples que concreten cada article del reglament, vàlides des de l’1 d’octubre de 2026.',
+    chips: ['Exemples i situacions'],
+    disponible: true,
+  },
+];
 ---
-
-<Base title="Reglament de Bàsquetbol FCBQ/FIBA 2026">
-  <section class="mb-10">
-    <h1 class="text-3xl font-bold tracking-tight">Reglament de Bàsquetbol 2026</h1>
-    <p class="mt-2 max-w-2xl text-court-600 dark:text-court-300">
-      Consulta ràpida de les Regles FIBA 2026 v1.1 adaptades per l’FCBQ. Contingut de mostra
-      (Lorem Ipsum) estructurat segons les regles i els articles del reglament.
+<Base
+  title="Documents d'arbitratge FCBQ/FIBA 2026"
+  description="Col·lecció de documents per a l'arbitratge del bàsquetbol: el reglament FIBA/FCBQ 2026 i les seves interpretacions oficials, en consulta ràpida."
+>
+  <section class="mb-12">
+    <h1 class="max-w-3xl text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+      Documents d'arbitratge del bàsquetbol català
+    </h1>
+    <p class="mt-4 max-w-2xl text-court-600 dark:text-court-300">
+      Una col·lecció de documents per a l'arbitratge del bàsquetbol, pensada per consultar
+      durant i entre partits: les Regles Oficials FIBA 2026 adaptades per la
+      Federació Catalana de Basquetbol i les seves Interpretacions Oficials,
+      editades en català. Tot en una web ràpida i sense instal·lacions.
     </p>
-    <div class="mt-4 flex gap-4 text-sm">
-      <span class="rounded-full bg-court-200 px-3 py-1 dark:bg-court-700">{ruleList.length} regles</span>
-      <span class="rounded-full bg-court-200 px-3 py-1 dark:bg-court-700">{articles.length} articles</span>
+    <div class="mt-5 flex flex-wrap gap-3">
+      <a
+        href="/articles/art-01"
+        class="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+      >
+        Obre el reglament
+      </a>
+      <a
+        href="#documents"
+        class="rounded-lg border border-court-300 px-4 py-2 text-sm font-semibold transition hover:bg-court-100 dark:border-court-600 dark:hover:bg-court-700"
+      >
+        Veure els documents
+      </a>
     </div>
   </section>
 
-  <div class="space-y-8">
-    {ruleList.map((rule) => (
-      <section>
-        <h2 class="mb-3 border-b border-court-200 pb-2 text-xl font-semibold dark:border-court-700">
-          <span class="text-accent">Regla {rule.numero}</span> — {rule.titol}
-        </h2>
-        <ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {rule.articles.map((a) => (
-            <li>
-              <a
-                href={`/articles/${a.id}`}
-                class="flex items-baseline gap-2 rounded-lg border border-court-200 bg-white px-3 py-2 text-sm transition hover:border-accent hover:shadow-sm dark:border-court-700 dark:bg-court-800"
-              >
-                <span class="font-mono text-xs text-accent">{a.data.numero}</span>
-                <span>{a.data.titulo}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))}
-  </div>
+  <section id="documents" class="mb-12 scroll-mt-24">
+    <h2 class="mb-4 text-xl font-semibold">La col·lecció</h2>
+    <div class="grid gap-4 sm:grid-cols-2">
+      {documents.map((doc) => (
+        <a
+          href={doc.href}
+          aria-disabled={!doc.disponible || undefined}
+          class:list={[
+            'flex flex-col rounded-xl border border-court-200 bg-white p-5 transition dark:border-court-700 dark:bg-court-800',
+            doc.disponible
+              ? 'hover:border-accent hover:shadow-md'
+              : 'pointer-events-none opacity-60',
+          ]}
+        >
+          <div class="flex items-start justify-between gap-3">
+            <h3 class="text-lg font-bold text-balance">{doc.titol}</h3>
+            {!doc.disponible && (
+              <span class=" shrink-0 rounded-full bg-court-200 px-2.5 py-1 text-[10px] font-semibold tracking-wide uppercase dark:bg-court-700">
+                properament
+              </span>
+            )}
+          </div>
+          <p class="mt-1 font-mono text-xs text-accent">{doc.edicio}</p>
+          <p class="mt-3 grow text-sm text-court-600 dark:text-court-300">{doc.descripcio}</p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            {doc.chips.length > 0 && doc.chips.map((chip) => (
+              <span class="rounded-full bg-court-100 px-2.5 py-1 dark:bg-court-700">
+                {chip}
+              </span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="mb-4 text-xl font-semibold">Com es pot consultar</h2>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        {
+          t: 'Per regla o article',
+          d: 'Cada article té la seva pròpia pàgina amb la barra lateral per canviar d’article i filtrar vos ràpidament.',
+        },
+        {
+          t: 'Cerca a tots els llocs',
+          d: 'Un cercador a la barra superior busca a la vegada dins de tots els documents de la col·lecció, amb suggeriments al desplegable. Premeu / per obrir-lo.',
+        },
+        {
+          t: 'Annexos de l’FCBQ',
+          d: 'Les modificacions pròpies de les competicions catalanes apareixen com a annex destacat dins de cada article.',
+        },
+        {
+          t: 'Funciona a la pista',
+          d: 'Web estàtica sense complexitat: carrega ràpid en el mòbil de la pista i disposa de tema fosc.',
+        },
+      ].map((f) => (
+        <div class="rounded-xl border border-court-200 bg-white p-4 dark:border-court-700 dark:bg-court-800">
+          <h3 class="text-sm font-semibold">{f.t}</h3>
+          <p class="mt-2 text-sm text-court-600 dark:text-court-300">{f.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="rounded-xl border border-court-200 bg-white p-5 dark:border-court-700 dark:bg-court-800">
+    <h2 class="text-xl font-semibold">Sobre el projecte</h2>
+    <p class="mt-3 max-w-3xl text-sm leading-relaxed text-court-600 dark:text-court-300">
+      Els documents originals es publiquen com a PDF de màxima mida, difícil de consultar en
+      mig d'un partit. Aquest projecte els digitalitza i n'estructura el contingut article
+      per article: cada pàgina és un fitxer MDX independent que es pot editar i revisar a
+      mà, i el conjunt es publica com a web estàtica servida per nginx, fàcil de mantenir
+      actualitzada.
+    </p>
+    <p class="mt-4 text-xs text-court-500">
+      Fonts originals: <em>Regles oficials del bàsquetbol 2026</em> i
+      <em>Interpretacions oficials de les regles de joc</em>, editades en català per la
+      Federació Catalana de Basquetbol (<a
+        class="text-accent underline underline-offset-2"
+        href="mailto:arbitres@basquetcatala.cat">arbitres@basquetcatala.cat</a
+      >).
+    </p>
+  </section>
 </Base>

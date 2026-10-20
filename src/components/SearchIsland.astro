@@ -1,0 +1,248 @@
+---
+/**
+ * FlexSearch client island. The index records are pre-built at build time as
+ * /search-index.json (src/pages/search-index.json.ts); the FlexSearch document
+ * index is constructed in the browser on the first keystroke, then cached.
+ */
+const endpoint = '/search-index.json';
+---
+
+<div class="relative" id="search">
+  <label for="search-input" class="sr-only">Cerca en tots els documents</label>
+  <svg
+    class="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-court-400"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    aria-hidden="true"
+  >
+    <circle cx="11" cy="11" r="7"></circle>
+    <path d="m20 20-3.5-3.5" stroke-linecap="round"></path>
+  </svg>
+  <input
+    id="search-input"
+    data-search-endpoint={endpoint}
+    type="search"
+    placeholder="Cerca…"
+    autocomplete="off"
+    spellcheck="false"
+    aria-expanded="false"
+    aria-controls="search-results"
+    class="w-36 rounded-lg border border-court-200 bg-white py-1.5 pl-8 pr-12 text-sm placeholder:text-court-400 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent dark:border-court-600 dark:bg-court-800 sm:w-56 lg:w-72"
+  />
+  <kbd
+    class="pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 rounded border border-court-200 px-1.5 text-[10px] text-court-400 dark:border-court-600 sm:block"
+    >/</kbd
+  >
+  <div
+    id="search-results"
+    role="listbox"
+    hidden
+    class="absolute inset-x-0 top-full z-30 mt-2 max-h-[60vh] overflow-y-auto rounded-xl border border-court-200 bg-white p-1.5 shadow-lg dark:border-court-600 dark:bg-court-800"
+  >
+  </div>
+</div>
+
+<script>
+  import { Document } from 'flexsearch';
+
+  const search = document.getElementById('search')!;
+  const input = document.getElementById('search-input') as HTMLInputElement;
+  const panel = document.getElementById('search-results')!;
+  const endpoint = input.dataset.searchEndpoint ?? '/search-index.json';
+
+  type Record = {
+    id: string;
+    tipus: string;
+    url: string;
+    titulo: string;
+    numero: string;
+    context: string;
+    text: string;
+  };
+
+  let flexIndex: Document<Record> | null = null;
+  let records: Record[] | null = null;
+  let loading: Promise<void> | null = null;
+
+  async function loadIndex(): Promise<void> {
+    if (flexIndex) return;
+    if (!loading) {
+      loading = (async () => {
+        const res = await fetch(endpoint);
+        records = (await res.json()) as Record[];
+        flexIndex = new Document({
+          document: {
+            id: 'id',
+            index: [
+              { field: 'titulo', tokenize: 'forward' },
+              { field: 'numero', tokenize: 'forward' },
+              { field: 'text', tokenize: 'forward' },
+            ],
+          },
+        });
+        for (const r of records) flexIndex.add(r);
+      })();
+    }
+    await loading;
+  }
+
+  const htmlEscape = (s: string) =>
+    s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+
+  /** Snippet around the first query term, with the matches highlighted. */
+  function snippet(rec: Record, query: string): string {
+    const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    const lower = rec.text.toLowerCase();
+    let at = -1;
+    for (const t of terms) {
+      at = lower.indexOf(t);
+      if (at >= 0) break;
+    }
+    const start = Math.max(0, (at < 0 ? 0 : at) - 45);
+    const from = start > 0 ? rec.text.indexOf(' ', start) + 1 : start;
+    const sliced = rec.text.slice(from > 0 ? from : 0, (from > 0 ? from : 0) + 170);
+    let marked = htmlEscape(sliced);
+    for (const t of terms.sort((a, b) => b.length - a.length)) {
+      const re = new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      marked = marked.replace(re, '<mark><b>$1</b></mark>');
+    }
+    return (from > 0 ? '… ' : '') + marked + (from + 170 < rec.text.length ? ' …' : '');
+  }
+
+  function hint(rec: Record): string {
+    return [rec.tipus, rec.numero ? `art. ${rec.numero}` : '', rec.context]
+      .filter(Boolean)
+      .join(' · ');
+  }
+
+  type Item = { rec: Record; snippet: string };
+
+  async function runSearch(query: string): Promise<Item[]> {
+    await loadIndex();
+    if (!flexIndex || !records || !query.trim()) return [];
+    // Suggest:true tolerates small typos. FlexSearch 0.8 groups results per
+    // field ({field, result:[ids]}); merge them keeping titulo matches first.
+    const groups = flexIndex.search(query, { limit: 20, suggest: true }) as {
+      result: unknown[];
+    }[];
+    const byId = new Map(records.map((r) => [r.id, r]));
+    const seen = new Set<string>();
+    const items: Item[] = [];
+    for (const group of groups) {
+      for (const id of group.result) {
+        const rec = byId.get(String(id));
+        if (!rec || seen.has(rec.id)) continue;
+        seen.add(rec.id);
+        items.push({ rec, snippet: snippet(rec, query) });
+        if (items.length >= 10) return items;
+      }
+    }
+    return items;
+  }
+
+  function render(items: Item[], query: string) {
+    panel.innerHTML = '';
+    if (!query.trim()) return close();
+    if (items.length === 0) {
+      panel.innerHTML =
+        '<p class="px-3 py-2 text-sm text-court-500">Cap resultat. Prova amb altres termes.</p>';
+      panel.hidden = false;
+      input.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    items.forEach((it, i) => {
+      const a = document.createElement('a');
+      a.href = it.rec.url;
+      a.setAttribute('role', 'option');
+      a.dataset.idx = String(i);
+      a.className =
+        'block rounded-lg px-3 py-2 text-sm transition hover:bg-court-100 dark:hover:bg-court-700';
+      a.innerHTML =
+        `<div class="flex items-baseline justify-between gap-3">` +
+        `<span class="truncate font-semibold">${htmlEscape(it.rec.titulo)}</span>` +
+        `<span class="shrink-0 font-mono text-[10px] text-court-400">${htmlEscape(hint(it.rec))}</span>` +
+        `</div>` +
+        `<p class="mt-1 line-clamp-2 leading-snug text-court-600 dark:text-court-300">${it.snippet}</p>`;
+      panel.appendChild(a);
+    });
+    panel.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  }
+
+  function current(): HTMLElement | null {
+    return panel.querySelector<HTMLAnchorElement>('[data-idx][aria-selected="true"]');
+  }
+
+  function setActive(el: HTMLElement | null) {
+    panel.querySelectorAll('[data-idx]').forEach((n) => {
+      (n as HTMLElement).removeAttribute('aria-selected');
+      n.classList.remove('bg-accent/10');
+    });
+    if (!el) return;
+    el.setAttribute('aria-selected', 'true');
+    el.classList.add('bg-accent/10');
+  }
+
+  function close() {
+    panel.hidden = true;
+    panel.innerHTML = '';
+    input.setAttribute('aria-expanded', 'false');
+  }
+
+  let active = -1;
+  let items: Item[] = [];
+  let timer: ReturnType<typeof setTimeout>;
+
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      items = await runSearch(input.value);
+      active = -1;
+      render(items, input.value);
+    }, 120);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    const visible = !panel.hidden && panel.children.length > 0 && items.length > 0;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      if (!visible) return;
+      e.preventDefault();
+      const n = items.length;
+      active = e.key === 'ArrowDown' ? (active + 1) % n : (active - 1 + n) % n;
+      const el = panel.querySelector<HTMLElement>(`[data-idx="${active}"]`);
+      setActive(el);
+      el?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      const chosen = visible && active >= 0 ? items[active] : items[0];
+      if (chosen) {
+        e.preventDefault();
+        location.href = chosen.rec.url;
+      }
+    } else if (e.key === 'Escape') {
+      close();
+      input.blur();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (visiblePanel() && !search.contains(e.target as Node)) close();
+  });
+
+  function visiblePanel(): boolean {
+    return !panel.hidden;
+  }
+
+  // "/" anywhere focuses the header search box.
+  document.addEventListener('keydown', (e) => {
+    const t = e.target as HTMLElement;
+    if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      const editing = t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable;
+      if (!editing) {
+        e.preventDefault();
+        input.focus();
+      }
+    }
+  });
+</script>

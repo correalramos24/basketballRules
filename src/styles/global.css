@@ -57,6 +57,11 @@ body {
   align-items: baseline;
 }
 
+/* Long interpretation ids (`29/51-12`) may run past the column; never wrap them. */
+.prose h2 .sub-id {
+  white-space: nowrap;
+}
+
 .prose h2 .sub-title {
   min-width: 0;
 }

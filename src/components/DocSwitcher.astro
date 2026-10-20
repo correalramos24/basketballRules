@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+
+/**
+ * Header dropdown to jump between documents. When the current page has a
+ * counterpart in the other document (Art. 2 ↔ interpretation 2) it links there,
+ * otherwise to the first entry of that document.
+ */
+const path = Astro.url.pathname.replace(/\/$/, '');
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.numero - b.data.numero,
+);
+const interp = (await getCollection('interpretacions', ({ data }) => !data.draft))
+  .map((entry) => ({
+    entry,
+    // Some interpretations span two articles ("18/19").
+    numeros: entry.data.numero.split('/').map((n) => parseInt(n, 10)),
+  }))
+  .sort((a, b) => a.numeros[0] - b.numeros[0]);
+
+const articleUrl = (id: string) => `/articles/${id}`;
+const interpUrl = (id: string) => `/interpretacions/${id}`;
+
+let current: 'reglament' | 'interpretacions' = 'reglament';
+let reglamentHref = articleUrl(articles[0].id);
+let interpHref = interpUrl(interp[0].entry.id);
+
+const articleMatch = path.match(/^\/articles\/(.+)$/);
+const interpMatch = path.match(/^\/interpretacions\/(.+)$/);
+if (articleMatch) {
+  current = 'reglament';
+  reglamentHref = path;
+  const numero = articles.find((a) => a.id === articleMatch[1])?.data.numero;
+  const twin = interp.find((i) => i.numeros.includes(numero));
+  if (twin) interpHref = interpUrl(twin.entry.id);
+} else if (interpMatch) {
+  current = 'interpretacions';
+  interpHref = path;
+  const first = interp.find((i) => i.entry.id === interpMatch[1])?.numeros[0];
+  const twin = articles.find((a) => a.data.numero === first);
+  if (twin) reglamentHref = articleUrl(twin.id);
+}
+
+const options = [
+  { value: 'reglament', href: reglamentHref, label: 'Reglament' },
+  { value: 'interpretacions', href: interpHref, label: 'Interpretacions' },
+];
+---
+
+<label class="relative block">
+  <span class="sr-only">Canviar de document</span>
+  <select
+    id="doc-switcher"
+    class="appearance-none rounded-lg border border-court-200 bg-white py-1.5 pl-3 pr-8 text-sm font-medium focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent dark:border-court-600 dark:bg-court-800"
+  >
+    {options.map((o) => (
+      <option value={o.href} selected={o.value === current}>
+        {o.label}
+      </option>
+    ))}
+  </select>
+  <span
+    class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-court-400"
+    aria-hidden="true">⌄</span
+  >
+</label>
+
+<script>
+  const select = document.getElementById('doc-switcher') as HTMLSelectElement | null;
+  select?.addEventListener('change', () => {
+    if (select.value !== location.pathname) location.href = select.value;
+  });
+</script>
